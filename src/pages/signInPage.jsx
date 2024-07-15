@@ -3,8 +3,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -14,52 +12,42 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "../style/auth.css";
 import img from "../assets/Hero2.png";
 import axios from "axios";
-// import Cookies from "js-cookie";
-// import userContext from "../context/userContext";
 import { ToastContainer, toast } from "react-toastify";
 import { useState, useContext } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import Loader from "../components/loader"
+import Loader from "../components/loader";
 
 const theme = createTheme();
 
 export default function SignIn() {
-//   const { addToken } = useContext(userContext);
-//   const { userInfo } = useContext(userContext);
+  //   const { addToken } = useContext(userContext);
+  //   const { userInfo } = useContext(userContext);
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false); // Loading state
   const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } };
   const navigate = useNavigate();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true); // Set loading state to true
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_URL}facility/login`,
+        `http//:127.0.0.1:8000/api/user/login`,
         {
           email,
           password,
         }
       );
-
-    //   addToken(response.data.token);
-
-    //   userInfo(
-    //     response.data.facility._id,
-    //     response.data.facility.email,
-    //     response.data.facility.name,
-    //     response.data.facility.username,
-    //     response.data.facility.phone,
-    //     response.data.facility.address
-    //   );
+      localStorage.setItem("session", {
+        user: response?.user,
+        userToken: response?.authorisation.token,
+      });
+      console.log(response);
       toast.success("logIn successful");
       navigate(from);
-
-    //   Cookies.set("token", response.data.token, { expires: 7 }); // Expires in 7 days
     } catch (error) {
       console.log(error);
       toast.error("Error SignIn, Please Try Again ");
@@ -71,7 +59,7 @@ export default function SignIn() {
   return (
     <div className="signIn">
       <div className="signIn-img">
-        <img src={img} alt="img"  width={"750px"} height={"500px"} />
+        <img src={img} alt="img" width={"750px"} height={"500px"} />
       </div>
       <div className="signIn-form">
         <ThemeProvider theme={theme}>
@@ -122,10 +110,6 @@ export default function SignIn() {
                   autoComplete="current-password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
                 <Button
                   type="submit"
                   fullWidth
@@ -156,7 +140,7 @@ export default function SignIn() {
                 <Grid container>
                   <Grid item>
                     <Link
-                      to="/signUp"
+                      to="/sign-up"
                       style={{
                         textDecoration: "none",
                         "&:hover": {
