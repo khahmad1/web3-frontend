@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "../style/allProduct.css";
 import MedicineCard from "../components/medecineCard";
 import axios from "axios";
+import { URL_SERVER } from "../constant";
+
 export default function AllProducts() {
   const [medicine, setMedicine] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -13,14 +15,14 @@ export default function AllProducts() {
       try {
         let response;
         if (categoryId == null) {
-          response = await axios.get(`http://192.168.20.98:5000/api/medicine`);
+          response = await axios.get(`${URL_SERVER}medicine`);
           console.log(response.data);
 
           setMedicine(response.data);
           setLoading(false);
         } else {
           response = await axios.get(
-            `http://192.168.20.98:5000/api/medicine/category/${categoryId}`
+            `${URL_SERVER}medicine/category/${categoryId}`
           );
           console.log(response.data);
 
@@ -41,7 +43,7 @@ export default function AllProducts() {
       try {
         let response;
 
-        response = await axios.get(`http://192.168.20.98:5000/api/category`);
+        response = await axios.get(`${URL_SERVER}category`);
         console.log(response.data);
 
         setCategories(response.data);
@@ -77,7 +79,7 @@ export default function AllProducts() {
             quantity={item.quantity}
             company={item?.company.name}
             country={item?.company.country}
-            image={`http://192.168.20.98:5000/${item.image}`}
+            image={`${URL_SERVER}/${item.image}`}
             expiration_date={item.expiration_date}
           />
         ))}
