@@ -1,7 +1,9 @@
 import React from 'react'
 import { Button } from '@mui/material'
-export default function Button(props) {
+import { Link } from 'react-router-dom'
+export default function ButtonComponent(props) {
   return (
+    <>
     <Link className="" to={props.link}>
     <Button
       sx={{
@@ -22,6 +24,7 @@ export default function Button(props) {
    {props.text}
     </Button>
     </Link>
+    </>
   )
 }
 
