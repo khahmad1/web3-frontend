@@ -1,40 +1,86 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import ".././style/Footer.css";
-import "../index.css";
-import twitter from "../assets/icons8-twitter-50.png";
+import { List, ListItem } from "@mui/material";
+import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import XIcon from '@mui/icons-material/X';
-import YouTubeIcon from '@mui/icons-material/YouTube';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-export default function Footer(){
-    return (
-        <footer className="footer">
-            <div className="info">
-                <div>
-                    <h2>About us<div class="blue-bar"></div></h2>
-                    <p style={{width: 60+"%"}}>Our Medical Bridge is dedicated to revolutionizing the way healthcare services are delivered across the nation. With a singular focus on ensuring every hospital and clinic .</p>
-            </div>
-            <div>
-                <h2>Quick Links: <div class="blue-bar"></div></h2>
-                <div className="quick-links">
-                    <Link to="/about">About us</Link>
-                    <Link to="/signup">Sign up</Link>
-                    <Link to="/">Home</Link>
-                </div>
-            </div>
-            <div>
-                <h2>Contact us!<div class="blue-bar"></div></h2>
-                <div className="foot-links">
-                <Link to="https://www.instagram.com/" ><InstagramIcon style={{width:30+"px",height:30+"px"}}/></Link>
-                <Link to="https://www.x.com" ><XIcon style={{width:30+"px",height:30+"px"}}/></Link>
-                <Link to="https://www.youtube.com" ><YouTubeIcon style={{width:30+"px",height:30+"px"}}/></Link>
-                <Link to="https://www.whatsapp.com" ><WhatsAppIcon style={{width:30+"px",height:30+"px"}}/></Link> 
-                </div>
-            </div>
-           </div>
-           <div className="copyright">
-                © 2024 All Rights Reserved
-            </div> 
-        </footer>
-    )
+import '../style/Footer.css'
+
+function Footer() {
+  const session = localStorage.getItem("session");
+
+  return (
+    <footer className="footer">
+      <section className="row">
+        <div className="column">
+          <h4 className="connect">About Us</h4>
+          <p className="pra">
+            Our Medical Bridge is dedicated to revolutionizing the way
+            healthcare services are delivered across the nation. With a singular
+            focus on ensuring every hospital and clinic .
+          </p>
+        </div>
+
+        <div className="column">
+          <h4 className="connect">Quick Links</h4>
+          <ul className="ul">
+            <li>
+              {session ? (
+                <Link to="/profile">
+                  <i className="fa fa-angle-right"></i> Profile
+                </Link>
+              ) : (
+                <Link to="/signIn">
+                  <i className="fa fa-angle-right"></i> Sign In
+                </Link>
+              )}
+            </li>
+
+            <li>
+              <Link to="/order">
+                <i className="fa fa-angle-right"></i> Order
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact">
+                <i className="fa fa-angle-right"></i> Contact us
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div className="column">
+          <h4 className="connect">Connect with Us</h4>
+          <List className="social-icons">
+            <ListItem>
+              <Link to="https://www.facebook.com/">
+               <FacebookIcon/>
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link to="https://www.instagram.com/">
+            <InstagramIcon/>
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link to="https://twitter.com/">
+             <XIcon/>
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link to="https://web.whatsapp.com/">
+              <WhatsAppIcon/>
+              </Link>
+            </ListItem>
+          </List>
+        </div>
+      </section>
+      <section className="copyright">
+        <p>© 2023 All Rights Reserved</p>
+      </section>
+    </footer>
+  );
 }
+
+export default Footer;

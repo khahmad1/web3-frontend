@@ -1,12 +1,13 @@
 .container {
-    width: 80%;
+
     display: flex;
     height: auto;
+    justify-content: center;
     flex-direction: column;
-    margin: 0 auto;
-    margin-top: 6em;
+
+margin: 4em;
     flex-wrap: wrap;
-    margin-bottom: 2em;
+
   }
   .profile h1,
   .container h1 {
