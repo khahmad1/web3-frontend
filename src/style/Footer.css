@@ -1,0 +1,26 @@
+.footer{
+    border:1px solid;
+    display:flex;
+    flex-direction: column;
+    box-shadow: 0px 1px 5px;
+}
+.footer > div > div {
+    margin:5px;
+    width:30%;  
+}
+.quick-links{
+    display:flex;
+    flex-direction:column;
+}
+.info{
+    display:flex;
+
+}
+.foot-links > *{
+    margin:0 10px 0 10px;
+}
+.copyright{
+    background-color:var(--primary);
+    text-align:center;
+    padding:10px;   
+}

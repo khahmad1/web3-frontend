@@ -8,7 +8,7 @@ import AdminLayout from "./layouts/adminLayout";
 import NotFound from "./pages/notFound";
 import SignIn from "./pages/signInPage";
 import SignUp from "./pages/SignUpPage";
-
+import Profile from "./pages/Profile";
 function App() {
   return (
     <div className="">
@@ -26,7 +26,7 @@ function App() {
         {/* </Route> */}
         <Route path="/" element={<CustomerLayout />}>
           <Route path="/" element={<HomePage />} />
-
+          <Route path="/profile" element={<Profile/>}/>
           <Route path="/contact-us" element={<ContactUsPAge />} />
           <Route path="/about" element={<AboutUsPAge />} />
           <Route path="/sign-in" element={<SignIn />} />

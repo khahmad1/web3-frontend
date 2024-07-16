@@ -40,7 +40,7 @@ export default function SignUp() {
     setLoading(true); // Set loading state to true
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_URL}facility/signUp`,
+        `http://127.0.0.1:8000/api/user/register`,
         {
           email,
           name,
@@ -211,7 +211,7 @@ export default function SignUp() {
                         },
                       }}
                     >
-                      Don't have an account? Sign In
+                      Already have an account? Sign In
                     </Link>
                   </Grid>
                 </Grid>
