@@ -17,7 +17,7 @@ export default function ContactUsPAge() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_URL}support/create`, {
+      .post(`http://192.168.20.98:5000/api/support/create`, {
         name,
         email,
         message,

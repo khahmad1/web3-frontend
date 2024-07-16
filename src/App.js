@@ -9,6 +9,7 @@ import NotFound from "./pages/notFound";
 import SignIn from "./pages/signInPage";
 import SignUp from "./pages/SignUpPage";
 import Profile from "./pages/Profile";
+import AllProducts from "./pages/AllProducts";
 function App() {
   return (
     <div className="">
@@ -26,8 +27,9 @@ function App() {
         {/* </Route> */}
         <Route path="/" element={<CustomerLayout />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/profile" element={<Profile />} />
           <Route path="/contact-us" element={<ContactUsPAge />} />
+          <Route path="/all-product" element={<AllProducts />} />
           <Route path="/about" element={<AboutUsPAge />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />

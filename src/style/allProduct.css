@@ -1,0 +1,11 @@
+.AllProductContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.products {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    width: 1005;
+    gap: 10px; /* Adjust the gap between the grid items as needed */
+}

@@ -18,7 +18,7 @@ export default function Navbar() {
           Home
         </NavLink>
         <NavLink
-          to="/all-products"
+          to="/all-product"
           className={`
           ${({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""}
