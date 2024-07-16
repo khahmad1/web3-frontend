@@ -17,7 +17,7 @@ export default function ContactUsPAge() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_URL}inbox`, {
+      .post(`${process.env.REACT_APP_URL}support/create`, {
         name,
         email,
         message,
