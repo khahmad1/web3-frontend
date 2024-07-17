@@ -6,11 +6,13 @@ export default function ButtonComponent(props) {
     <>
     <Link className="" to={props.link}>
     <Button
+    onClick={props.onClick}
+    className=''
       sx={{
         backgroundColor: "var(--primary)",
         fontSize: "16px",
         height: "45px",
-        width: 125,
+        width: props.width? props.width  : 125,
         color: "#fff",
         border: "1px solid var(--primary)",
         "&:hover": {

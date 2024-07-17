@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {TextField} from "@mui/material";
+import { TextField } from "@mui/material";
 import "../style/contactUs.css";
 import { Button } from "@mui/material";
 import axios from "axios";
@@ -32,8 +32,8 @@ export default function ContactUsPAge() {
       });
   };
   return (
-    <main className="container">
-      <h1 className="title">Get In Touch</h1>
+    <main className="m-16">
+      <h1 className="text-4xl font-semibold">Get In Touch</h1>
       <div className="touch">
         <section className="inputs-form">
           <article className="inputs">
@@ -111,7 +111,7 @@ export default function ContactUsPAge() {
           ></iframe>
         </section>
       </div>
-      <article className="information">
+      <article className="flex flex-row justify-center my-5 gap-10">
         <div className="icons">
           <LocationOnIcon
             className="icon"

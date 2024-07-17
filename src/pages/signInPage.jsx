@@ -16,6 +16,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useState, useContext } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import Loader from "../components/loader";
+import { URL_SERVER } from "../constant";
 
 const theme = createTheme();
 
@@ -34,18 +35,15 @@ export default function SignIn() {
     e.preventDefault();
     setLoading(true); // Set loading state to true
     try {
-      const response = await axios.post(
-        `http//:127.0.0.1:8000/api/user/login`,
-        {
-          email,
-          password,
-        }
-      );
-      localStorage.setItem("session", {
-        user: response?.user,
-        userToken: response?.authorisation.token,
+      const response = await axios.post(`${URL_SERVER}user/login`, {
+        email,
+        password,
       });
-      console.log(response);
+      localStorage.setItem("session", {
+        user: response?.data.user,
+        userToken: response?.data.authorisation?.token,
+      });
+    
       toast.success("logIn successful");
       navigate(from);
     } catch (error) {
@@ -57,7 +55,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="signIn">
+    <div className="flex flex-row mx-16 justify-between ">
       <div className="signIn-img">
         <img src={img} alt="img" width={"750px"} height={"500px"} />
       </div>

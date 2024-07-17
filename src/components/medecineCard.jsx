@@ -12,31 +12,34 @@ import ButtonComponent from "./button";
 
 function MedicineCard(props) {
   return (
-    <div>
-      <main className="medicine">
-        <div className="card">
-          <figure>
-            <img src={props.image} alt={"image"} />
-          </figure>
-          <section className="details">
-            <div className="min-details">
-              <h1 className="cart-name">
-                {props.name}
-                <span>{props.company}</span>
-              </h1>
-              <h1 className="price">{props.price}$</h1>
-            </div>
-
-            <div className="options">
-              <h4>Expiration Date: {props.expiration_date}</h4>
-              <h4>Origin Country: {props.country}</h4>
-              <h4>Type: {props.type}</h4>
-              <h4>Quantity: {props.quantity}</h4>
-            </div>
-            <ButtonComponent text={"Add To cart"} />
-          </section>
+    <div className="card">
+      <figure>
+        <img src={props.image} alt={"image"} />
+      </figure>
+      <section className="details !py-5">
+        <div className="min-details ">
+          <h1 className="cart-name font-semibold text-xl">
+            {props.name}
+            <span className="font-semibold">{props.company}</span>
+          </h1>
+          <h1 className="price font-semibold">{props.price}$</h1>
         </div>
-      </main>
+        <div className="flex flex-col gap-5 my-5">
+          <div className="flex flex-col gap-5">
+            <p className="text-bas font-semibold">
+              Expiration Date: {props.expiration_date}
+            </p>
+            <p className="text-bas font-semibold">
+              Origin Country: {props.country}
+            </p>
+            <p className="text-bas font-semibold">Type: {props.type}</p>
+            <p className="text-bas font-semibold">Quantity: {props.quantity}</p>
+          </div>
+          <div className="flex flex-row justify-center">
+            <ButtonComponent width={175} text={"Add To cart"} />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
