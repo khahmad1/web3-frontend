@@ -11,19 +11,32 @@ import SignUp from "./pages/SignUpPage";
 import Profile from "./pages/Profile";
 import AllProducts from "./pages/AllProducts";
 import ChooseYourProductPage from "./pages/ChooseYourProductPage";
+import Admin from "./dashboardComponent/Admin";
+
+import Facility from "./dashboardComponent/Facility";
+import Medicine from "./dashboardComponent/Medicine";
+import Message from "./dashboardComponent/Message";
+import Order from "./dashboardComponent/Order";
+import "./index.css"
+import Category from "./dashboardComponent/Category";
+import Dashboard from "./dashboardComponent/Dashboard";
+import Type from "./dashboardComponent/Type";
+import Company from "./dashboardComponent/Company";
 function App() {
   return (
     <div className="">
       <Routes>
         {/* <Route path="/dashboard" element={<LoginAdmin />}> */}
         <Route path="/dashboard" element={<AdminLayout />}>
-          {/* <Route path="dashboard" element={<Dashboard />} />
-            <Route path="admin" element={<AdminTable />} />
-            <Route path="category" element={<CategoryTable />} />
-            <Route path="facility" element={<FacilityTable />} />
-            <Route path="medicine" element={<MedicineTable />} />
-            <Route path="message" element={<MessageTable />} />
-            <Route path="order" element={<OrderTable />} /> */}
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="admin" element={<Admin />} />
+          <Route path="category" element={<Category />} />
+          <Route path="type" element={<Type />} />
+          <Route path="company" element={<Company />} />
+          <Route path="facility" element={<Facility />} />
+          <Route path="medicine" element={<Medicine />} />
+          <Route path="message" element={<Message />} />
+          <Route path="order" element={<Order />} />
         </Route>
         {/* </Route> */}
         <Route path="/" element={<CustomerLayout />}>
@@ -32,7 +45,7 @@ function App() {
           <Route path="/contact-us" element={<ContactUsPAge />} />
           <Route
             path="/choose-your-product"
-            element={<ChooseYourProductPage/>}
+            element={<ChooseYourProductPage />}
           />
           <Route path="/about" element={<AboutUsPAge />} />
           <Route path="/sign-in" element={<SignIn />} />

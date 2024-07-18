@@ -41,10 +41,12 @@ export default function SignIn() {
         password,
 
       });
-      localStorage.setItem("session", {
+      const sessionData = {
         user: response?.data.user,
         userToken: response?.data.authorisation?.token,
-      });
+      };
+  
+      localStorage.setItem("session", JSON.stringify(sessionData));
     
       toast.success("logIn successful");
       navigate(from);

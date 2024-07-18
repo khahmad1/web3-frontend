@@ -77,7 +77,7 @@ function Footer() {
         </div>
       </section>
       <section className="copyright">
-        <p>© 2023 All Rights Reserved</p>
+        <p>© 2024 All Rights Reserved</p>
       </section>
     </footer>
   );

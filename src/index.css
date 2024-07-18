@@ -33,3 +33,10 @@ code {
   width:6%;
   background-color: var(--primary);
 }
+
+.css-1knaqv7-MuiButtonBase-root-MuiButton-root{
+  color: white !important;
+}
+.css-1rtnrqa {
+  color: white !important;
+}
