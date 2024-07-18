@@ -35,7 +35,7 @@ export default function SignIn() {
     setLoading(true); // Set loading state to true
     try {
       const response = await axios.post(
-        `http//:127.0.0.1:8000/api/user/login`,
+        `http://127.0.0.1:8000/api/user/login`,
         {
           email,
           password,

@@ -1,0 +1,19 @@
+.behind{
+    border:1px solid;
+    margin:25px;
+    height:200px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.behind > *{
+    margin:10px;
+}
+.name{
+    margin-left:20px; 
+}
+.profile-icon{
+    width:20px;
+    height:20px;
+    margin-right:10px;
+}
