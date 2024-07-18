@@ -1,16 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Ubuntu");
 
-.medicine{
-  /* margin:0 auto; */
-  display: flex;
-  width: 94%;
-  justify-content: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 4em;
-}
+
 .card {
   position: relative;
   border-radius: 5px;
@@ -19,7 +9,7 @@
   overflow: hidden;
   width: 300px;
   box-sizing: border-box;
-  margin-bottom: 10em;
+  margin-bottom: 14px;
 }
 
 .card > figure {

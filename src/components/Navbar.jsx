@@ -4,7 +4,7 @@ import Button from "./button";
 import ".././style/Navbar.css";
 export default function Navbar() {
   return (
-    <nav className="nav-header">
+    <nav className=" h-28 flex flex-row justify-between items-center shadow-md px-16">
       <img className="" src={logo}  width={160} height={155}/>
       <div className="nav-links">
         <NavLink
@@ -18,7 +18,7 @@ export default function Navbar() {
           Home
         </NavLink>
         <NavLink
-          to="/all-product"
+          to="/choose-your-product"
           className={`
           ${({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""}

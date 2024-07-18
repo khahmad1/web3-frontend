@@ -3,7 +3,7 @@ import "../style/loader.css"
 
 function Loader() {
   return (
-    <div className="loader">
+    <div className="loader flex justify-center  ">
       <svg className="loading" width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
         <use href="#pill_shadow" transform="scale(.9, .3) translate(32 1150)" />
         <use href="#everything">

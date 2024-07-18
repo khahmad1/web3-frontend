@@ -8,8 +8,9 @@ import AdminLayout from "./layouts/adminLayout";
 import NotFound from "./pages/notFound";
 import SignIn from "./pages/signInPage";
 import SignUp from "./pages/SignUpPage";
+import Profile from "./pages/Profile";
 import AllProducts from "./pages/AllProducts";
-import Profile from "./pages/Profile.jsx";
+import ChooseYourProductPage from "./pages/ChooseYourProductPage";
 function App() {
   return (
     <div className="">
@@ -29,7 +30,10 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact-us" element={<ContactUsPAge />} />
-          <Route path="/all-product" element={<AllProducts />} />
+          <Route
+            path="/choose-your-product"
+            element={<ChooseYourProductPage/>}
+          />
           <Route path="/about" element={<AboutUsPAge />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
