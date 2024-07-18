@@ -17,7 +17,6 @@ export default function AllProducts() {
         if (categoryId == null) {
           response = await axios.get(`${URL_SERVER}medicine`);
           console.log(response.data);
-
           setMedicine(response.data);
           setLoading(false);
         } else {

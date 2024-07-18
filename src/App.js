@@ -8,8 +8,8 @@ import AdminLayout from "./layouts/adminLayout";
 import NotFound from "./pages/notFound";
 import SignIn from "./pages/signInPage";
 import SignUp from "./pages/SignUpPage";
-import Profile from "./pages/Profile";
 import AllProducts from "./pages/AllProducts";
+import Profile from "./pages/Profile.jsx";
 function App() {
   return (
     <div className="">
