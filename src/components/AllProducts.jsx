@@ -88,6 +88,7 @@ export default function AllProducts(props) {
               ? medicine?.map((item, index) => (
                   <MedicineCard
                     key={index}
+                    id={item.id}
                     name={item.name}
                     price={item.price}
                     type={item?.type.type}
@@ -103,6 +104,7 @@ export default function AllProducts(props) {
                   ?.map((item, index) => (
                     <MedicineCard
                       key={index}
+                      id={item.id}
                       name={item.name}
                       price={item.price}
                       type={item?.type.type}
@@ -116,7 +118,16 @@ export default function AllProducts(props) {
           </div>
         </div>
       )}
-     {props.useCategory && <div className="flex flex-row justify-center"> <ButtonComponent width={250} link={"/choose-your-product"} text={"Check More Product"}/></div>}
+      {props.useCategory && (
+        <div className="flex flex-row justify-center">
+          {" "}
+          <ButtonComponent
+            width={250}
+            link={"/choose-your-product"}
+            text={"Check More Product"}
+          />
+        </div>
+      )}
     </div>
   );
 }
