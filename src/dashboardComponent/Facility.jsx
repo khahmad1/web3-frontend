@@ -3,33 +3,28 @@ import TableData from "../components/Table";
 
 export default function Facility() {
   const columns = [
-
     {
       field: "name",
       headerName: "Name",
       width: 280,
-      editable: true,
     },
     {
       field: "email",
       headerName: "Email",
       width: 280,
-      editable: true,
     },
     {
       field: "phone",
       headerName: "Phone",
       width: 280,
-      editable: true,
     },
     {
       field: "is_admin",
       headerName: "Is Admin",
       width: 220,
-      editable: true,
     },
-    { field: 'created_at', headerName: 'Created At', width: 200 },
-    { field: 'updated_at', headerName: 'Updated At', width: 200 },
+    { field: "created_at", headerName: "Created At", width: 200 },
+    { field: "updated_at", headerName: "Updated At", width: 200 },
     {
       field: "edit",
       headerName: "Edit",
@@ -61,7 +56,11 @@ export default function Facility() {
   ];
   return (
     <div className="my-16 mx-8 overflow-scroll">
-      <TableData title={"Facilities"} columns={columns} url={"user/customers"} />
+      <TableData
+        title={"Facilities"}
+        columns={columns}
+        url={"user/customers"}
+      />
     </div>
   );
 }

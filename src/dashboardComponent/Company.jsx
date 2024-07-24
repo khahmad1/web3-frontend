@@ -7,13 +7,13 @@ export default function Company() {
           field: "name",
           headerName: "Name",
           width: 280,
-          editable: true,
+       
         },
         {
             field: "country",
             headerName: "Country",
             width: 280,
-            editable: true,
+         
           },
     
         { field: "created_at", headerName: "Created At", width: 200 },

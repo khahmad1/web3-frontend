@@ -24,27 +24,31 @@ import Type from "./dashboardComponent/Type";
 import Company from "./dashboardComponent/Company";
 import { AppProvider } from "./context";
 import Orders from "./pages/Orders";
+import RequireAdmin from "./protect/protectRouteAdmin";
+import RequireUser from "./protect/protectRouteUser";
 function App() {
   return (
     <div className="">
       <AppProvider>
         <Routes>
           {/* <Route path="/dashboard" element={<LoginAdmin />}> */}
-          <Route path="/dashboard" element={<AdminLayout />}>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="admin" element={<Admin />} />
-            <Route path="category" element={<Category />} />
-            <Route path="type" element={<Type />} />
-            <Route path="company" element={<Company />} />
-            <Route path="facility" element={<Facility />} />
-            <Route path="medicine" element={<Medicine />} />
-            <Route path="message" element={<Message />} />
-            <Route path="order" element={<Order />} />
+          <Route element={<RequireAdmin />}>
+            <Route path="/admin-panel" element={<AdminLayout />}>
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="admin" element={<Admin />} />
+              <Route path="category" element={<Category />} />
+              <Route path="type" element={<Type />} />
+              <Route path="company" element={<Company />} />
+              <Route path="facility" element={<Facility />} />
+              <Route path="medicine" element={<Medicine />} />
+              <Route path="message" element={<Message />} />
+              <Route path="order" element={<Order />} />
+            </Route>
           </Route>
           {/* </Route> */}
           <Route path="/" element={<CustomerLayout />}>
             <Route path="/" element={<HomePage />} />
-            <Route path="/profile" element={<Profile />} />
+
             <Route path="/contact-us" element={<ContactUsPAge />} />
             <Route
               path="/choose-your-product"
@@ -52,7 +56,11 @@ function App() {
             />
             <Route path="/about" element={<AboutUsPAge />} />
             <Route path="/orders" element={<Orders />} />
+            <Route element={<RequireUser />}>
+              <Route path="/profile" element={<Profile />} />
+            </Route>
             <Route path="/sign-in" element={<SignIn />} />
+
             <Route path="/sign-up" element={<SignUp />} />
           </Route>
           <Route path="*" element={<NotFound />} />

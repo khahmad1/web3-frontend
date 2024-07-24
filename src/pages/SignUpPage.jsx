@@ -15,19 +15,18 @@ import axios from "axios";
 // import Cookies from "js-cookie";
 // import userContext from "../context/userContext";
 import { ToastContainer, toast } from "react-toastify";
-import { useState,  } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import Loader from "../components/loader";
+import { URL_SERVER } from "../constant";
 
 const theme = createTheme();
 
 export default function SignUp() {
-
-
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [logo, setLogo] = useState("");
   const [phone, setPhone] = useState();
   const [address, setAddress] = useState("");
   const [loading, setLoading] = useState(false); // Loading state
@@ -35,39 +34,42 @@ export default function SignUp() {
   const { from } = location.state || { from: { pathname: "/" } };
   const navigate = useNavigate();
 
+  const queryParams = new URLSearchParams(location.search);
+  const returnTo = queryParams.get("returnTo");
+  console.log(returnTo)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true); // Set loading state to true
     try {
-      const response = await axios.post(
-        `http://127.0.0.1:8000/api/user/register`,
-        {
-          email,
-          name,
-          password,
-          username,
-          phone,
-          address,
-        }
-      );
-    //   addToken(response.data.token);
-    //   userInfo(
-    //     response.data.facility._id,
-    //     response.data.facility.email,
-    //     response.data.facility.name,
-    //     response.data.facility.username,
-    //     response.data.facility.phone,
-    //     response.data.facility.address
-    //   );
-      toast.success("signUp successful");
-      navigate(from);
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("phone", phone);
+      formData.append("password", password);
+      formData.append("logo", logo);
+      formData.append("address", address);
 
-    //   Cookies.set("token", response.data.token, { expires: 7 }); // Expires in 7 days
+      const response = await axios.post(`${URL_SERVER}user/register`, formData);
+
+      const sessionData = {
+        user: response?.data.user,
+        userToken: response?.data.authorisation?.token,
+      };
+
+      localStorage.setItem("session", JSON.stringify(sessionData));
+      toast.success("SignUp successful");
+      if (returnTo) {
+        navigate(`/${returnTo}`);
+      } else if (response?.data?.user?.is_admin == true) {
+        navigate("/admin-panel");
+      } else navigate(from);
+
     } catch (error) {
       console.log(error);
       toast.error("Error SignUp, Please Try Again ");
     } finally {
-      setLoading(false); // Set loading state back to false
+      setLoading(false);
     }
   };
 
@@ -130,15 +132,16 @@ export default function SignUp() {
                 <Box sx={{ display: "flex", gap: "0.5rem" }}>
                   <TextField
                     margin="normal"
-                    id="username"
-                    label="Username"
-                    type="text"
+                    id="logo"
+                    label="logo"
+                    type="file"
                     fullWidth
-                    required
-                    name="username"
+                    name="logo"
                     variant="outlined"
-                    onChange={(e) => setUsername(e.target.value)}
+                    InputLabelProps={{ shrink: true }}
+                    onChange={(e) => setLogo(e.target.files[0])}
                   />
+
                   <TextField
                     margin="normal"
                     id="phone"
@@ -194,9 +197,9 @@ export default function SignUp() {
                   }}
                 >
                   {loading ? (
-                   <Loader/>
-                   // Render the loader component when loading is true
+                    <Loader />
                   ) : (
+                    // Render the loader component when loading is true
                     "Sign Up"
                   )}
                 </Button>

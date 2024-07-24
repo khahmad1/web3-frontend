@@ -1,7 +1,9 @@
 import React from "react";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 export default function ButtonComponent(props) {
+
   return (
     <>
       <Link className="" to={props.link}>
@@ -23,7 +25,7 @@ export default function ButtonComponent(props) {
             },
           }}
         >
-          {props.text}
+         {props.text}
         </Button>
       </Link>
     </>

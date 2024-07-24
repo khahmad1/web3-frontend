@@ -30,26 +30,30 @@ export default function SignIn() {
   const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } };
   const navigate = useNavigate();
-
+  const queryParams = new URLSearchParams(location.search);
+  const returnTo = queryParams.get("returnTo");
+  console.log(returnTo);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true); // Set loading state to true
     try {
-
       const response = await axios.post(`${URL_SERVER}user/login`, {
         email,
         password,
-
       });
       const sessionData = {
         user: response?.data.user,
         userToken: response?.data.authorisation?.token,
       };
-  
+
       localStorage.setItem("session", JSON.stringify(sessionData));
-    
+
       toast.success("logIn successful");
-      navigate(from);
+      if (returnTo) {
+        navigate(`/${returnTo}`);
+      } else if (response?.data?.user?.is_admin == true) {
+        navigate("/admin-panel");
+      } else navigate(from);
     } catch (error) {
       console.log(error);
       toast.error("Error SignIn, Please Try Again ");
@@ -142,7 +146,9 @@ export default function SignIn() {
                 <Grid container>
                   <Grid item>
                     <Link
-                      to="/sign-up"
+                      to={
+                        returnTo ? `/sign-up?returnTo=${returnTo}` : "/sign-up"
+                      }
                       style={{
                         textDecoration: "none",
                         "&:hover": {

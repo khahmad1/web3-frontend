@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppContext } from "../context";
 import { URL_SERVER, assets } from "../constant";
 import ButtonComponent from "../components/button";
@@ -6,18 +6,30 @@ import { TextField } from "@mui/material";
 import axios from "axios";
 import { toast } from "react-toastify";
 import TruckAnimation from "../components/orderAnimations";
+import { useNavigate } from "react-router-dom";
+import SignIn from "./signInPage";
 
 export default function Orders() {
   const [loading, setLoading] = useState();
   const { cart, setCart } = useAppContext();
+  const [session, setSession] = useState();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
   const [message, setMessage] = useState(" ");
-  const session = JSON.parse(localStorage.getItem("session"));
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("session"));
+    setSession(data);
+  }, [session]);
+  const navigate = useNavigate();
   const handleOrderSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
+      if (!session) {
+        navigate("/sign-in?returnTo=orders");
+        return;
+      }
       // Create the order
       const response = await axios.post(`${URL_SERVER}order/create`, {
         facility_id: session?.user.id,
@@ -27,7 +39,8 @@ export default function Orders() {
       });
 
       const orderId = response.data.message.id;
-      console.log(orderId, response.data);
+ 
+
       if (orderId) {
         const orderLinePromises = cart.map((item) => {
           return axios.post(`${URL_SERVER}orderline/create`, {
@@ -48,9 +61,8 @@ export default function Orders() {
       setLoading(false); // Set loading state back to false
     }
   };
-  console.log(cart.length == 0)
-  if(cart.length == 0) 
-  return (<TruckAnimation/>)
+
+  if (cart.length == 0) return <TruckAnimation />;
   return (
     <div className="my-24 mx-80 flex  flex-row  gap-5 ">
       <div className="w-[60%] grid grid-rows-1 gap-5">

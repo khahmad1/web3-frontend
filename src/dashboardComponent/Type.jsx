@@ -7,7 +7,7 @@ export default function Type() {
           field: "type",
           headerName: "Type",
           width: 280,
-          editable: true,
+       
         },
     
         { field: "created_at", headerName: "Created At", width: 200 },

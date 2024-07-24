@@ -8,25 +8,25 @@ export default function Admin() {
           field: "name",
           headerName: "Name",
           width: 280,
-          editable: true,
+       
         },
         {
           field: "email",
           headerName: "Email",
           width: 280,
-          editable: true,
+       
         },
         {
           field: "phone",
           headerName: "Phone",
           width: 280,
-          editable: true,
+       
         },
         {
           field: "is_admin",
           headerName: "Is Admin",
           width: 220,
-          editable: true,
+       
         },
         { field: 'created_at', headerName: 'Created At', width: 200 },
         { field: 'updated_at', headerName: 'Updated At', width: 200 },
