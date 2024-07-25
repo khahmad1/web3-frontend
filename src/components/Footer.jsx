@@ -31,19 +31,19 @@ function Footer() {
                   <i className="fa fa-angle-right"></i> Profile
                 </Link>
               ) : (
-                <Link to="/signIn">
+                <Link to="/sign-in">
                   <i className="fa fa-angle-right"></i> Sign In
                 </Link>
               )}
             </li>
 
             <li>
-              <Link to="/order">
+              <Link to="/orders">
                 <i className="fa fa-angle-right"></i> Order
               </Link>
             </li>
             <li>
-              <Link to="/contact">
+              <Link to="/contact-us">
                 <i className="fa fa-angle-right"></i> Contact us
               </Link>
             </li>
@@ -51,7 +51,7 @@ function Footer() {
         </div>
 
         <div className="column">
-          <h4 className="connect">Connect with Us</h4>
+          <h4 className="connect">Follow Us</h4>
           <List className="social-icons">
             <ListItem>
               <Link to="https://www.facebook.com/">

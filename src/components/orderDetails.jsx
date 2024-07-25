@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Modal, Button } from '@mui/material';
-import { Info as InfoIcon } from '@mui/icons-material';
-import 'tailwindcss/tailwind.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Modal, Button } from "@mui/material";
+import { Info as InfoIcon } from "@mui/icons-material";
+import "tailwindcss/tailwind.css";
+import { URL_SERVER, assets } from "../constant";
 
 export default function OrderDetails(props) {
   const [orderDetails, setOrderDetails] = useState([]);
@@ -12,26 +13,34 @@ export default function OrderDetails(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${props.url}`);
+        const response = await axios.get(
+          `${URL_SERVER}orderline/order/${props.id}`
+        );
+        console.log(response.data);
         setOrderDetails(response.data);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [props.url]);
-
+  }, [props.id]);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <Button onClick={handleOpen} startIcon={<InfoIcon />}>
-        View Order Details
-      </Button>
+      <Button
+        onClick={handleOpen}
+        startIcon={
+          <InfoIcon
+            style={{ width: "2rem", height: "2rem" }}
+            className="text-primary"
+          />
+        }
+      ></Button>
 
       <Modal
         open={open}
@@ -47,11 +56,20 @@ export default function OrderDetails(props) {
             ) : (
               <ul>
                 {orderDetails.map((item, index) => (
-                  <li key={index} className="border-b border-gray-200 py-2">
-                    <p><strong>Name:</strong> {item.name}</p>
-                    <p><strong>Quantity:</strong> {item.quantity}</p>
-                    <p><strong>Price:</strong> ${item.price}</p>
-                  </li>
+                  <div key={index} className="flex flex-row gap-5">
+                    <img src={`${assets}${item.medicine.image}`} width={100} height={100}  className=" rounded-lg border-b border-gray-200 py-2"/>
+                    <li className="border-b border-gray-200 py-2">
+                      <p>
+                        <strong>Name:</strong> {item.medicine.name}
+                      </p>
+                      <p>
+                        <strong>Quantity:</strong> {item.orderLine.quantity}
+                      </p>
+                      <p>
+                        <strong>Price:</strong> ${item.orderLine.price}
+                      </p>
+                    </li>
+                  </div>
                 ))}
               </ul>
             )}

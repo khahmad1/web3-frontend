@@ -8,6 +8,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Button from "../components/button.jsx";
 import { assets } from "../constant";
 import TableData from "../components/Table";
+import OrderDetails from "../components/orderDetails";
 
 export default function Profile() {
   const [data, setData] = useState({});
@@ -24,17 +25,18 @@ export default function Profile() {
     {
       field: "message",
       headerName: "Message",
-      width: 280,
+      width: 250,
     },
     {
       field: "totalPrice",
       headerName: "Total Price",
-      width: 280,
+      width: 250,
+      renderCell: (params) => `$${params.value}`,
     },
     {
       field: "status",
       headerName: "Status",
-      width: 280,
+      width: 250,
     },
 
     {
@@ -50,20 +52,12 @@ export default function Profile() {
       renderCell: (params) => new Date(params.value).toLocaleString(),
     },
     {
-      field: "edit",
-      headerName: "Details",
+      field: "Order Details",
+      headerName: " Order Details",
       width: 100,
-      // renderCell: (params) => (
-      //   <EditAdmin
-      //     id={params.row._id}
-      //     username={params.row.username}
-      //     email={params.row.email}
-      //     name={params.row.full_name}
-      //     setRows={setRows}
-      //     url={"admin"}
-      //   />
-      // ),
+      renderCell: (params) => <OrderDetails id={params.row.id}/>,
     },
+ 
   ];
   return (
     <div className="m-16 flex flex-col gap-5 ">
