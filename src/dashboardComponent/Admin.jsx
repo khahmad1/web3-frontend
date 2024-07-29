@@ -1,5 +1,6 @@
 import React from "react";
 import TableData from "../components/Table";
+import UserForm from "../components/UserForm";
 
 export default function Admin() {
   const columns = [
@@ -66,7 +67,12 @@ export default function Admin() {
   ];
   return (
     <div className="my-16 mx-8 overflow-scroll">
-      <TableData title={"Admin"} columns={columns} url={"user/admins"} />
+      <TableData
+        add={<UserForm title={"Add New Admin"} method={"register"} isAdmin />}
+        title={"Admin"}
+        columns={columns}
+        url={"user/admins"}
+      />
     </div>
   );
 }

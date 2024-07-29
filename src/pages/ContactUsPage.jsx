@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
+import { URL_SERVER } from "../constant";
 
 export default function ContactUsPAge() {
   const [name, setName] = useState("");
@@ -17,7 +18,7 @@ export default function ContactUsPAge() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`http://192.168.20.98:5000/api/support/create`, {
+      .post(`${URL_SERVER}support/create`, {
         name,
         email,
         message,

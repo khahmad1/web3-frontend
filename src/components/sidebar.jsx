@@ -46,13 +46,14 @@ function SideBar() {
 
   return (
     <nav className="sidebar">
-      <img
+      <Link to="/"> <img
         src={logo}
         alt="logo"
         width={180}
         height={200}
         className="logo-expand"
-      />
+      /></Link>
+     
       <main className="side-wrapper">
         <section className="side-menu">
           <Link

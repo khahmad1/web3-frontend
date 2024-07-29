@@ -5,6 +5,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { URL_SERVER } from "../constant";
+import DeleteComponent from "../components/deleteComponent";
 
 export default function Order() {
   const [status, setStatus] = useState();
@@ -14,6 +15,7 @@ export default function Order() {
         status: newStatus,
       });
       toast.success("Update Status Success");
+      window.location.reload();
     } catch (e) {
       console.log(e);
     }
@@ -71,24 +73,21 @@ export default function Order() {
     {
       field: "Order Details",
       headerName: " Order Details",
-      width: 100,
+      width: 150,
       renderCell: (params) => <OrderDetails id={params.row.id} />,
     },
-    // {
-    //   field: "edit",
-    //   headerName: "Details",
-    //   width: 200,
-    //   // renderCell: (params) => (
-    //   //   <EditAdmin
-    //   //     id={params.row._id}
-    //   //     username={params.row.username}
-    //   //     email={params.row.email}
-    //   //     name={params.row.full_name}
-    //   //     setRows={setRows}
-    //   //     url={"admin"}
-    //   //   />
-    //   // ),
-    // },
+    {
+      field: "delete",
+      headerName: "Delete",
+      width: 200,
+      renderCell: (params) => (
+        <DeleteComponent
+          id={params.row._id}
+          url={`order/delete/${params.id}`}
+          title={"Order"}
+        />
+      ),
+    },
   ];
   return (
     <div className="my-16 mx-8 overflow-scroll">

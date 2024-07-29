@@ -96,7 +96,7 @@ const TableData = (props) => {
               }}
             >
               <Typography variant="h4"></Typography>
-              <div>{/* <AddAdmin setRows={setRows} /> */}</div>
+              <div>{props.add}</div>
             </div>
             <DataGrid
               rows={rows}

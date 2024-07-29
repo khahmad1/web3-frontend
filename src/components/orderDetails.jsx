@@ -34,13 +34,21 @@ export default function OrderDetails(props) {
     <div>
       <Button
         onClick={handleOpen}
-        startIcon={
-          <InfoIcon
-            style={{ width: "2rem", height: "2rem" }}
-            className="text-primary"
-          />
-        }
-      ></Button>
+        sx={{
+          fontSize: "12px",
+          color: "var(--primary)",
+          "&:hover": {
+            color: "#fff",
+            cursor: "pointer",
+            transform: "scale(1)",
+            backgroundColor: "var(--primary)",
+            transition: "0.2s ease-out",
+          },
+        }}
+      >
+        {" "}
+        <InfoIcon style={{ width: "2rem", height: "2rem" }} />
+      </Button>
 
       <Modal
         open={open}
@@ -57,7 +65,12 @@ export default function OrderDetails(props) {
               <ul>
                 {orderDetails.map((item, index) => (
                   <div key={index} className="flex flex-row gap-5">
-                    <img src={`${assets}${item.medicine.image}`} width={100} height={100}  className=" rounded-lg border-b border-gray-200 py-2"/>
+                    <img
+                      src={`${assets}${item.medicine.image}`}
+                      width={100}
+                      height={100}
+                      className=" rounded-lg border-b border-gray-200 py-2"
+                    />
                     <li className="border-b border-gray-200 py-2">
                       <p>
                         <strong>Name:</strong> {item.medicine.name}
