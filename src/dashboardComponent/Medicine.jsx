@@ -58,18 +58,18 @@ export default function Medicine() {
       renderCell: (params) => params.value.type,
     },
     {
-      field: "company",
+      field: "company_name",
       headerName: "Company",
       width: 100,
 
-      renderCell: (params) => params.value.name,
+      renderCell: (params) => params.row.company.name,
     },
     {
-      field: "company",
+      field: "company_country",
       headerName: "Country",
       width: 100,
 
-      renderCell: (params) => params.value.country,
+      renderCell: (params) => params.row.company.country,
     },
     {
       field: "created_at",

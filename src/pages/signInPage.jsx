@@ -52,7 +52,7 @@ export default function SignIn() {
       if (returnTo) {
         navigate(`/${returnTo}`);
       } else if (response?.data?.user?.is_admin == true) {
-        navigate("/admin-panel");
+        navigate("/admin-panel/dashboard");
       } else navigate(from);
     } catch (error) {
       console.log(error);

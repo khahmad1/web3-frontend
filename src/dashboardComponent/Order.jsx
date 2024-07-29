@@ -52,12 +52,20 @@ export default function Order() {
       ),
     },
     {
-      field: "user",
+      field: "user_name",
       headerName: "User",
       width: 200,
 
-      renderCell: (params) => params.value.name, // Access the name property of the user object
+      renderCell: (params) => params.row.user.name, // Access the name property of the user object
     },
+    {
+      field: "user_location",
+      headerName: "User Location",
+      width: 200,
+
+      renderCell: (params) => params.row.user.address, 
+    },
+  
     {
       field: "created_at",
       headerName: "Created At",
@@ -70,6 +78,7 @@ export default function Order() {
       width: 250,
       renderCell: (params) => new Date(params.value).toLocaleString(),
     },
+
     {
       field: "Order Details",
       headerName: " Order Details",

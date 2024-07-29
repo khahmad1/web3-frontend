@@ -20,7 +20,7 @@ export default function Navbar() {
 
   return (
     <nav className=" h-28 flex flex-row justify-between items-center shadow-md px-16">
-      <Link to={"admin-panel"}>
+      <Link to={"/admin-panel/dashboard"}>
         <img className="" src={logo} width={160} height={155} />
       </Link>
       <div className="flex flex-row gap-5 items-center">
