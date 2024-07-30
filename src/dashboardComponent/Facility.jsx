@@ -45,16 +45,14 @@ export default function Facility() {
       field: "edit",
       headerName: "Edit",
       width: 100,
-      // renderCell: (params) => (
-      //   <EditAdmin
-      //     id={params.row._id}
-      //     username={params.row.username}
-      //     email={params.row.email}
-      //     name={params.row.full_name}
-      //     setRows={setRows}
-      //     url={"admin"}
-      //   />
-      // ),
+      renderCell: (params) => (
+        <UserForm
+          id={params.row._id}
+          method={`update/${params.row.id}`}
+          title={"Edit Admin"}
+          isEdit
+        />
+      ),
     },
     {
       field: "delete",
@@ -72,7 +70,7 @@ export default function Facility() {
   return (
     <div className="my-16 mx-8 overflow-scroll">
       <TableData
-         add={<UserForm title={"Add New Facility"} method={"register"}  />}
+        add={<UserForm title={"Add New Facility"} method={"register"} />}
         title={"Facilities"}
         columns={columns}
         url={"user/customers"}

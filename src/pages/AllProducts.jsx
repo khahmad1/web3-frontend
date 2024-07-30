@@ -60,8 +60,9 @@ export default function AllProducts() {
       <div className="categories">
         {categories?.map((item) => (
           <button
+          className={"w-44"}
             onClick={() => setCategoryID(item?.id)}
-            className=""
+ 
             key={item.id}
           >
             {item.name}

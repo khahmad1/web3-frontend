@@ -169,7 +169,7 @@ function SideBar() {
           </Link>
         </section>
       </main>
-      <div
+      {/* <div
         style={{
           display: "flex",
           alignItems: "center",
@@ -197,7 +197,7 @@ function SideBar() {
             Logout
           </span>
         )}
-      </div>
+      </div> */}
     </nav>
   );
 }

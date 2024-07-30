@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Box } from "@mui/material";
 import { URL_SERVER } from "../constant";
+import { Edit } from "@mui/icons-material";
 
 function UserForm(props) {
   const [open, setOpen] = useState(false);
@@ -29,12 +30,29 @@ function UserForm(props) {
   const handleClose = () => {
     setOpen(false);
   };
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
 
+  const validatePassword = (password) => {
+    return password.length >= 8;
+  };
   let is_admin = props.isAdmin ? 1 : 0;
   const handleSubmit = async (e) => {
     e.preventDefault();
     setOpen(false);
     try {
+      if (!validateEmail(email)) {
+        toast.error("Invalid email address");
+        return;
+      }
+
+      // Validate password
+      if (!validatePassword(password)) {
+        toast.error("Password must be at least 8 characters long");
+        return;
+      }
       const formData = new FormData();
       formData.append("name", name);
       formData.append("email", email);
@@ -56,30 +74,49 @@ function UserForm(props) {
       toast.error("Error Please Try Again");
     }
   };
+  const styles = props.isEdit
+    ? {
+        fontSize: "12px",
+        color: "var(--primary)",
+        "&:hover": {
+          color: "#fff",
+          cursor: "pointer",
+          transform: "scale(1)",
+          backgroundColor: "var(--primary)",
+          transition: "0.2s ease-out",
+        },
+      }
+    : {
+        backgroundColor: "var(--primary)",
+        fontSize: "12px",
+        color: "#fff",
+        "&:hover": {
+          color: "var(--primary)",
+          cursor: "pointer",
+          transform: "scale(1)",
+          transition: "0.2s ease-out",
+        },
+      };
 
   return (
     <section className="addForm">
       {/* <Sheet> */}
-      <Button
-        sx={{
-          backgroundColor: "var(--primary)",
-          fontSize: "12px",
-          color: "#fff",
-          "&:hover": {
-            color: "var(--primary)",
-            cursor: "pointer",
-            transform: "scale(1)",
-            transition: "0.2s ease-out",
-          },
-        }}
-        onClick={handleClickOpen}
-      >
-        <PersonAddIcon /> {props.title}
+      <Button sx={styles} onClick={handleClickOpen}>
+        <div>
+          {props.isEdit ? (
+            <Edit />
+          ) : (
+            <>
+              <PersonAddIcon />
+              {props.title}
+            </>
+          )}
+        </div>
       </Button>
       {/* </Sheet> */}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle sx={{ backgroundColor: "var(--primary)", color: "white" }}>
-         {props.title}
+          {props.title}
         </DialogTitle>
         <DialogContent>
           <form>

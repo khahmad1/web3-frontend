@@ -1,6 +1,7 @@
 import React from "react";
 import TableData from "../components/Table";
 import { assets } from "../constant";
+import MedicineForm from "../components/medicineForm";
 
 export default function Medicine() {
   const columns = [
@@ -87,34 +88,31 @@ export default function Medicine() {
       field: "edit",
       headerName: "Edit",
       width: 100,
-      // renderCell: (params) => (
-      //   <EditAdmin
-      //     id={params.row._id}
-      //     username={params.row.username}
-      //     email={params.row.email}
-      //     name={params.row.full_name}
-      //     setRows={setRows}
-      //     url={"admin"}
-      //   />
-      // ),
+      renderCell: (params) => (
+        <MedicineForm
+          isEdit
+          method={`update/${params.row.id}`}
+          title={"Edit Medicine"}
+        />
+      ),
     },
     {
       field: "delete",
       headerName: "Delete",
       width: 100,
       // renderCell: (params) => (
-      //   <DeleteComponent
-      //     id={params.row._id}
-      //     url={"admin"}
-      //     title={"Admin"}
-      //     setRows={setRows}
-      //   />
+      // <MedicineForm method={`update/${params.row.id}`} title={"Edit Medicine"}/>
       // ),
     },
   ];
   return (
     <div className="my-16 mx-8 overflow-scroll">
-      <TableData name={"Medicines"} columns={columns} url={"medicine"} />
+      <TableData
+        add={<MedicineForm method={"create"} title={"Add Medicine"} />}
+        title={"Medicines"}
+        columns={columns}
+        url={"medicine"}
+      />
     </div>
   );
 }

@@ -37,11 +37,29 @@ export default function SignUp() {
   const queryParams = new URLSearchParams(location.search);
   const returnTo = queryParams.get("returnTo");
   console.log(returnTo)
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
 
+  const validatePassword = (password) => {
+    return password.length >= 8;
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true); // Set loading state to true
     try {
+      if (!validateEmail(email)) {
+        toast.error("Invalid email address");
+        return;
+      }
+
+      // Validate password
+      if (!validatePassword(password)) {
+        toast.error("Password must be at least 8 characters long");
+        return;
+      }
+
       const formData = new FormData();
       formData.append("name", name);
       formData.append("email", email);

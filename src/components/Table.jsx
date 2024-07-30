@@ -58,7 +58,6 @@ const TableData = (props) => {
       try {
         const response = await axios.get(`${URL_SERVER}${props.url}`);
         setRows(response.data);
-        console.log(response.data.map((item)=>item));
         setLoading(false);
       } catch (error) {
         console.error("Error fetching  data:", error);

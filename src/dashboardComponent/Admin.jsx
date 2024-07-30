@@ -1,9 +1,24 @@
 import React from "react";
 import TableData from "../components/Table";
 import UserForm from "../components/UserForm";
+import DeleteComponent from "../components/deleteComponent";
+import { assets } from "../constant";
 
 export default function Admin() {
   const columns = [
+    {
+      field: "logo",
+      headerName: "Logo",
+      width: 100,
+      renderCell: (params) => (
+        <img
+          className="rounded-full"
+          width={40}
+          height={40}
+          src={`${assets}${params.value}`}
+        />
+      ),
+    },
     {
       field: "name",
       headerName: "Name",
@@ -40,29 +55,27 @@ export default function Admin() {
       field: "edit",
       headerName: "Edit",
       width: 100,
-      // renderCell: (params) => (
-      //   <EditAdmin
-      //     id={params.row._id}
-      //     username={params.row.username}
-      //     email={params.row.email}
-      //     name={params.row.full_name}
-      //     setRows={setRows}
-      //     url={"admin"}
-      //   />
-      // ),
+      renderCell: (params) => (
+        <UserForm
+          id={params.row._id}
+          method={`update/${params.row.id}`}
+          isAdmin
+          title={"Edit Admin"}
+          isEdit
+        />
+      ),
     },
     {
       field: "delete",
       headerName: "Delete",
       width: 100,
-      // renderCell: (params) => (
-      //   <DeleteComponent
-      //     id={params.row._id}
-      //     url={"admin"}
-      //     title={"Admin"}
-      //     setRows={setRows}
-      //   />
-      // ),
+      renderCell: (params) => (
+        <DeleteComponent
+          id={params.row._id}
+          url={`user/delete/${params.id}`}
+          title={"Facility"}
+        />
+      ),
     },
   ];
   return (
