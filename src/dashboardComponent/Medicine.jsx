@@ -2,6 +2,7 @@ import React from "react";
 import TableData from "../components/Table";
 import { assets } from "../constant";
 import MedicineForm from "../components/medicineForm";
+import DeleteComponent from "../components/deleteComponent";
 
 export default function Medicine() {
   const columns = [
@@ -100,9 +101,13 @@ export default function Medicine() {
       field: "delete",
       headerName: "Delete",
       width: 100,
-      // renderCell: (params) => (
-      // <MedicineForm method={`update/${params.row.id}`} title={"Edit Medicine"}/>
-      // ),
+      renderCell: (params) => (
+        <DeleteComponent
+          id={params.row._id}
+          url={`medicine/delete/${params.id}`}
+          title={"Medicine"}
+        />
+      ),
     },
   ];
   return (
