@@ -224,7 +224,7 @@ export default function SignUp() {
                 <Grid container>
                   <Grid item>
                     <Link
-                      to="/signIn"
+                      to="/sign-in"
                       style={{
                         textDecoration: "none",
                         "&:hover": {

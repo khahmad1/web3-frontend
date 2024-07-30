@@ -12,6 +12,7 @@ import OrderDetails from "../components/orderDetails";
 
 export default function Profile() {
   const [data, setData] = useState({});
+  const [orderLength,setOrderLength]= useState()
   const navigate = useNavigate();
   useEffect(() => {
     const session = JSON.parse(localStorage.getItem("session"));
@@ -84,7 +85,7 @@ export default function Profile() {
             <LocalPhoneIcon className="profile-icon" />
             Phone: <span className="data">{data?.phone}</span>{" "}
           </div>
-          <h2>Requested Order</h2>
+          <h2>Requested Order : {orderLength}</h2>
 
           <div className="buttons">
             <Button
@@ -105,6 +106,7 @@ export default function Profile() {
               title={"Your Order"}
               columns={columns}
               url={`order/user/${data.id}`}
+              setOrderLength={setOrderLength}
             />
           )}
         </div>

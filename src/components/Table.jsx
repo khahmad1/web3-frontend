@@ -59,6 +59,7 @@ const TableData = (props) => {
         const response = await axios.get(`${URL_SERVER}${props.url}`);
         setRows(response.data);
         setLoading(false);
+        props.setOrderLength(response?.data?.length)
       } catch (error) {
         console.error("Error fetching  data:", error);
         setLoading(false);
